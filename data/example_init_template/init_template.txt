@@ -1,0 +1,63 @@
+## Nemo
+
+root_dir results
+
+generations 50000
+replicates 10
+run_mode silent_run
+
+
+patch_number 2
+
+ntrl_all 2
+ntrl_init_model 1
+ntrl_loci 74
+ntrl_mutation_model 2
+ntrl_mutation_rate 0.00001
+ntrl_output_dir ntrl
+ntrl_output_logtime 50000
+ntrl_save_freq locus
+ntrl_save_genotype TAB
+
+ntrl_genetic_map_resolution 0.001 ### ntrl map resolution does not work ###
+
+ntrl_genetic_map {{90000, 91000, 92000, 93000, 94000, 95000, 96000, 97000, 98000, 99000, 99100, 99200, 99300, 99400,  99500, 99600, 99700, 99800, 99900, 99910, 99920, 99930, 99940, 99950, 99960, 99970, 99980, 99990, 99991, 99992, 99993, 99994, 99995, 99996, 99997, 99998, 99999, 100001, 100002, 100003, 100004, 100005, 100006, 100007, 100008, 100009, 100010, 100020, 100030, 100040, 100050, 100060, 100070, 100080, 100090, 100100, 100200, 100300, 100400, 100500, 100600, 100700, 100800, 100900, 101000, 102000, 103000, 104000, 105000, 106000, 107000, 108000, 109000, 110000}}
+
+
+
+quanti_allele_model continuous
+quanti_allele_value {{0.5}}
+quanti_dir qtl
+quanti_freq_logtime 50000
+quanti_loci 1
+quanti_logtime 50000
+quanti_output genotypes
+quanti_traits 1
+quanti_genetic_map {{100000}}
+quanti_genetic_map_resolution 0.001
+
+save_stats 4
+stat adlt.fstat adlt.fstatWC adlt.quanti.mean.patch adlt.quanti.var.patch adlt.fitness.patch demography 
+stat_dir data
+stat_log_time 50000
+
+save_files 5
+
+aging 6
+
+breed 1
+mating_system 6
+mean_fecundity 4
+
+dispersal_model 1
+disperse 3
+
+selection_fitness_model relative_local
+selection_local_optima {{-1}{1}}
+
+selection_model gaussian
+selection_trait quant
+selection_trait_dimension 1
+viability_selection 2
+
+quanti_mutation_variance 1
