@@ -85,4 +85,3 @@ As described above.
 
 
 
-[LICENSE](LICENSE) - our license information
