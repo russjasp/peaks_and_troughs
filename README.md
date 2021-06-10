@@ -8,9 +8,6 @@ rjjasper@ucalgary.ca
 
 If you use or are inspired by code in this repository please cite the following work or contact me about how to cite. 
 
-FIGURE OUT LICENSE THINGS --> Please also see [license information](LICENSE).
-
-
 Jasper & Yeaman 2020 Local adaptation can cause both peaks and troughs in nucleotide diversity within populations. bioRxiv doi: https://doi.org/10.1101/2020.06.03.132662
 
 ---
@@ -76,12 +73,6 @@ On the y-axis it is simply the per locus mean of the metric across the entire ch
 
 ### example_init_template
 An example init_template.txt to generate .init and .slurm files for running simulations.
-
-### example_nemo_results
-Example raw output files from single-locus, two-patch simulations exploring effect of migration rate (0, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1) and Vs (2, 5, 10) on nucleotide diversity and Fst. Use 02A and 02B scripts to calculate the nucleotide diversity and Fst.
-
-### example_plots
-Example plots from above described data. Use 03 script to generate plots.
 
 ## Code
 As described above.
