@@ -95,9 +95,3 @@ As described above.
 
 
 [LICENSE](LICENSE) - our license information
-
-# thing
-# peaks_n_troughs
-# peaks_n_troughs
-# peaks_n_troughs
-# peaks_n_troughs
