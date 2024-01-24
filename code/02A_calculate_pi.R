@@ -3,7 +3,7 @@ options(scipen = 999)
 
 Total_list_of_all_nemo_raw_results_files <- list.files(pattern = "*.txt") ## The .txt Nemo output files in ntrl_output_dir will be used to calculate the Pi
 
-DATE <- "jan24" ## input date for naming results files
+DATE <- "" ## input date for naming results files
 
 
 
@@ -186,7 +186,3 @@ for(n in 1:length(number_of_different_pop_sizes)){
     } ## migration
   } ## time
 } ## pop size
-
-## Write total results for all parameter sets
-## setwd()
-write.csv(Master_results, paste0("PI_master_results_",DATE,".csv"), row.names = FALSE)
