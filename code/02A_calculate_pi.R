@@ -1,10 +1,9 @@
 rm(list=ls(all=TRUE))
 options(scipen = 999) 
 
-setwd()
 Total_list_of_all_nemo_raw_results_files <- list.files(pattern = "*.txt") ## The .txt Nemo output files in ntrl_output_dir will be used to calculate the Pi
 
-DATE <- "" ## input date for naming results files
+DATE <- "jan24" ## input date for naming results files
 
 
 
@@ -112,9 +111,9 @@ for(n in 1:length(number_of_different_pop_sizes)){
                   
                   master_results_only_adults <- master_results_variable[master_results_variable[,c(2+2*Number_of_ntrl_loci)] == 2,]
                   
-                  if(sum(is.na(master_results_only_adults)) == 0)
+                    nonNA_patches <- unique(master_results_only_adults[,1])[!is.na(unique(master_results_only_adults[,1]))]
                     
-                    Number_of_patches <- length(unique(master_results_only_adults[,1]))
+                    Number_of_patches <- length(unique(nonNA_patches))
                   
                   
                   if(r == 1){
@@ -134,7 +133,7 @@ for(n in 1:length(number_of_different_pop_sizes)){
                   for(p in 1:Number_of_patches){
                     
                     
-                    master_results_only_adults_by_patch <- master_results_only_adults[master_results_only_adults[,1] == p,]
+                    master_results_only_adults_by_patch <- master_results_only_adults[!is.na(master_results_only_adults[,1]) & master_results_only_adults[,1] == p,]
                     
                     Allele_population_size <- dim(master_results_only_adults_by_patch)[1] * 2
                     
@@ -179,77 +178,7 @@ for(n in 1:length(number_of_different_pop_sizes)){
             filename_var <- paste0("Pi_mig_", choose_migration, "_mut_", choose_mutation, "_Vs_", choose_Vs, "_qtl_", choose_qtl, "_N_", choose_pop, "_t_",choose_time, "_", DATE, ".csv")
             # setwd()
             write.csv(Nucleotide_diversity_results, filename_var, row.names = FALSE)
-            
-            
-            
-            genetic_map_qtl_specific <- rep(transformed_neutral_genetic_map, times = choose_qtl)
-            
-            
-            for(p in 1:dim(Nucleotide_diversity_results)[2]){
-              
-              
-              
-              nucleotide_div_variable <- Nucleotide_diversity_results[,p,]
-              
-              
-              nucleotide_div_means <- rowMeans(nucleotide_div_variable, na.rm = TRUE)
-              
-              
-              lm_mod_variable <- lm(nucleotide_div_means~genetic_map_qtl_specific)
-              
-              
-              slope_variable <- summary(lm_mod_variable)[[4]][2]
-              
-              
-              R_sq_variable <- summary(lm_mod_variable)$r.squared
-              
-              
-              Temp_results[,1] <- slope_variable
-              
-              Temp_results[,2] <- R_sq_variable
-              
-              
-              if(sum(nucleotide_div_means == 0) > 0) { 
-                
-                Temp_results[,3:4] <- NA
-                
-              } else {          
-                
-                
-                log_lm_mod_variable <- lm(log10(nucleotide_div_means)~genetic_map_qtl_specific)
-                
-                
-                
-                log_slope_variable <- summary(log_lm_mod_variable)[[4]][2]
-                
-                log_R_sq_variable <- summary(log_lm_mod_variable)$r.squared
-                
-                Temp_results[,3] <- log_slope_variable
-                
-                Temp_results[,4] <- log_R_sq_variable
-                
-              }
-              
-              
-              average_nucleotide_diversity <- mean(nucleotide_div_means, na.rm = TRUE)
-              
-              Temp_results[,5] <- average_nucleotide_diversity
-              
-              
-              Temp_results[,6] <- as.numeric(p)
-              Temp_results[,7] <- as.numeric(choose_qtl)
-              Temp_results[,8] <- log10(as.numeric(choose_migration))
-              Temp_results[,9] <- log10(as.numeric(choose_mutation))
-              Temp_results[,10] <- as.numeric(choose_Vs)
-              Temp_results[,11] <- as.numeric(choose_pop)
-              Temp_results[,12] <- as.numeric(choose_time)
-              
-              
-              Master_results <- rbind(Master_results, Temp_results)
-              
-              
-            } # end of patch for loop
-            
+
           
           } ## qtl
         } ## mutation
@@ -259,9 +188,5 @@ for(n in 1:length(number_of_different_pop_sizes)){
 } ## pop size
 
 ## Write total results for all parameter sets
-setwd()
+## setwd()
 write.csv(Master_results, paste0("PI_master_results_",DATE,".csv"), row.names = FALSE)
-
-
-
-
