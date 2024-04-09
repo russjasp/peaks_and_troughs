@@ -2,7 +2,7 @@
 
 ### Author Contact Information
 
-rjjasper@ucalgary.ca
+russell.jasper@unibe.ch
 
 ### Usage and license information
 
