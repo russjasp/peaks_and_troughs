@@ -92,6 +92,7 @@ for(n in 1:length(number_of_different_pop_sizes)){
             
             choose_qtl <- Different_qtl[q]
             Number_of_ntrl_loci <- choose_qtl*74
+            genetic_map_qtl_specific <- rep(transformed_neutral_genetic_map, times = choose_qtl)
             Temporary_Array_to_Collect_Results <- array(NA, dim = c(Number_of_ntrl_loci,2), dimnames = list(c(),c("mean Pi Fst","distance")))
             
             # qtl_probe <- paste0("") ## adjust when using multilocus
@@ -161,11 +162,11 @@ for(n in 1:length(number_of_different_pop_sizes)){
               
             TEMP_Plot_Results[1,3] <- Average_Pi_Fst_variable11
               
-            Close_Pi_Fst <- (Temporary_Array_to_Collect_Results[c(Number_of_ntrl_loci/2),1] + Temporary_Array_to_Collect_Results[c(Number_of_ntrl_loci/2+1),1]) / 2
+            Close_Pi_Fst <- mean(Temporary_Array_to_Collect_Results[genetic_map_qtl_specific==0,1])
               
             TEMP_Plot_Results[1,4] <- Close_Pi_Fst
               
-            Far_Pi_Fst <- (Temporary_Array_to_Collect_Results[1,1] + Temporary_Array_to_Collect_Results[Number_of_ntrl_loci,1]) / 2
+            Far_Pi_Fst <- mean(Temporary_Array_to_Collect_Results[genetic_map_qtl_specific==4,1])
               
             TEMP_Plot_Results[1,5] <- Far_Pi_Fst
               
