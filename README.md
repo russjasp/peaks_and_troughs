@@ -3,6 +3,7 @@
 ### Author Contact Information
 
 russell.jasper@unibe.ch
+rjjasper@ucalgary.ca
 
 ### Usage and license information
 
